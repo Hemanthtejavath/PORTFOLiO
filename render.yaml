@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: portfolio
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview -- --host 0.0.0.0 --port 3000
+    envVars:
+      - key: NODE_ENV
+        value: production
