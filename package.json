@@ -6,19 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "npm run build && npm run preview",
+    "start": "serve -s dist -l 3000",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@tsparticles/engine": "latest",
+    "@tsparticles/react": "latest",
     "framer-motion": "^12.38.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-icons": "^5.6.0",
-    "react-intersection-observer": "^10.0.3",
-    "@tsparticles/react": "latest",
-    "@tsparticles/engine": "latest"
+    "react-intersection-observer": "^10.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
@@ -32,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "postcss": "^8.5.9",
+    "serve": "^14.2.6",
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.4"
   }
