@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/navbar";
 import Home from "./components/HomePage/home";
 import About from "./components/AboutPage/about";
@@ -11,15 +12,15 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home />
-      <About />
-      <Education />
-      <Projects />
-      <Skills />
-      <Contact />
+      <Routes>
+        <Route path="/" Component={Home} />
+        <Route path="/about" Component={About} />
+        <Route path="/education" Component={Education} />
+        <Route path="/projects" Component={Projects} />
+        <Route path="/skills" Component={Skills} />
+        <Route path="/contact" Component={Contact} />
+      </Routes>
       <Footer />
-      {/* Later we can enable routing */}
-      {/* <About /> */}
     </>
   );
 }

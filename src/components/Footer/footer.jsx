@@ -116,13 +116,15 @@ const Footer = () => {
         </div>
 
         {/* Back to Top Button */}
-        <button
-          onClick={scrollToTop}
-          className="footer__top-btn"
-          title="Back to top"
-        >
-          <HiArrowUp />
-        </button>
+        <div className="buttonToTop">
+          <button
+            onClick={scrollToTop}
+            className="footer__top-btn"
+            title="Back to top"
+          >
+            <HiArrowUp />
+          </button>
+        </div>
       </div>
 
       {/* Bottom Section */}
@@ -139,9 +141,9 @@ const Footer = () => {
         <div className="footer__right">
           <span className="status-badge">🟢 Open to Opportunities</span>
           <span>•</span>
-          <span>v1.0</span>
+          <span>v1.1</span>
           <span>•</span>
-          <span>Last updated: Apr 2026</span>
+          <span>Last updated: June 2026</span>
         </div>
       </div>
     </footer>

@@ -264,7 +264,12 @@
   color: #4caf50;
   font-weight: 600;
 }
-
+.buttonToTop {
+  z-index: 2;
+  position: fixed;
+  top: 85%;
+  left: 95%;
+}
 /* ANIMATIONS */
 @keyframes pulse {
   0%,

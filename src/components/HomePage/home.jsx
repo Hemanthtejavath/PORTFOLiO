@@ -13,7 +13,6 @@ import {
   SiVite,
 } from "react-icons/si";
 import "./home.css";
-
 const techStack = [
   { name: "React", Icon: SiReact },
   { name: "JavaScript", Icon: SiJavascript },
@@ -33,6 +32,12 @@ const highlightCards = [
   "Clean UI Systems",
   "Performance Focused",
 ];
+
+import About from "../AboutPage/about";
+import Education from "../Education/education";
+import Contact from "../Contact/contact";
+import Projects from "../Projects/projects";
+import Skills from "../Skills/skills";
 
 const Home = () => {
   return (
@@ -99,6 +104,10 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <About />
+      <Education />
+      <Projects />
+      <Skills />
     </section>
   );
 };

@@ -185,7 +185,7 @@
 
 .tech-marquee {
   position: relative;
-  width: min(1120px, calc(100% - 2rem));
+  width: 60%;
   margin: 3.5rem auto 0;
   padding: 0.45rem 0;
   overflow: hidden;
@@ -210,12 +210,10 @@
 
 .tech-marquee__fade--left {
   left: 0;
-  background: linear-gradient(90deg, #05070b, rgba(5, 7, 11, 0));
 }
 
 .tech-marquee__fade--right {
   right: 0;
-  background: linear-gradient(270deg, #05070b, rgba(5, 7, 11, 0));
 }
 
 .tech-pill {

@@ -11,43 +11,46 @@ import {
   HiOutlineBriefcase,
   HiOutlineAcademicCap,
 } from "react-icons/hi2";
+
 import { RiRocketLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
+
 import "./navbar.css";
 
 const navItems = [
   {
     label: "HOME",
-    href: "#home",
+    href: "/",
     Icon: HiOutlineHome,
     hint: "Start here",
   },
   {
     label: "ABOUT",
-    href: "#about",
+    href: "/about",
     Icon: HiOutlineUser,
     hint: "Know my profile",
   },
   {
     label: "EDUCATION",
-    href: "#education",
+    href: "/education",
     Icon: HiOutlineAcademicCap,
     hint: "Academic background",
   },
   {
     label: "PROJECTS",
-    href: "#projects",
+    href: "/projects",
     Icon: HiOutlineBriefcase,
     hint: "My work & portfolio",
   },
   {
     label: "SKILLS",
-    href: "#skills",
+    href: "/skills",
     Icon: RiRocketLine,
     hint: "Tech and tools",
   },
   {
     label: "CONTACT",
-    href: "#contact",
+    href: "/contact",
     Icon: HiOutlineEnvelope,
     hint: "Let us connect",
   },
@@ -55,7 +58,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState("#home");
+  const [activeHref, setActiveHref] = useState("/");
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -65,51 +68,8 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    const updateFromHash = () => {
-      if (window.location.hash) {
-        setActiveHref(window.location.hash);
-      }
-    };
-
-    updateFromHash();
-    window.addEventListener("hashchange", updateFromHash);
-
-    const sections = navItems
-      .map(({ href }) => document.querySelector(href))
-      .filter(Boolean);
-
-    if (!sections.length) {
-      return () => {
-        window.removeEventListener("hashchange", updateFromHash);
-      };
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visibleEntry?.target?.id) {
-          setActiveHref(`#${visibleEntry.target.id}`);
-        }
-      },
-      {
-        rootMargin: "-35% 0px -45% 0px",
-        threshold: [0.2, 0.4, 0.6],
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      window.removeEventListener("hashchange", updateFromHash);
-      observer.disconnect();
-    };
-  }, []);
-
   const closeMenu = () => setIsMenuOpen(false);
+
   const handleNavClick = (href) => {
     setActiveHref(href);
     closeMenu();
@@ -118,31 +78,31 @@ const Navbar = () => {
   return (
     <>
       <header className="navbar">
-        <a className="navbar__brand" href="#home" onClick={closeMenu}>
+        <Link className="navbar__brand" to="/" onClick={closeMenu}>
           <div className="navbar__brand-mark">{"</>"}</div>
 
           <div className="navbar__brand-copy">
-            <span className="navbar__brand-name">HEMAN@TH</span>
+            <span className="navbar__brand-name">HEM@NTH</span>
             <span className="navbar__brand-role">DEVELOPER</span>
           </div>
-        </a>
-
+        </Link>
         <nav className="navbar__desktop-nav" aria-label="Primary navigation">
-          <ul className="navbar__links">
+          <div className="navbar__links">
             {navItems.map(({ label, href, Icon }) => (
-              <li
+              <Link
+                to={href}
                 className={activeHref === href ? "is-active" : ""}
                 key={label}
+                onClick={() => handleNavClick(href)}
               >
-                <a href={href} onClick={() => handleNavClick(href)}>
+                <div className="navItem">
                   <Icon />
                   <span>{label}</span>
-                </a>
-              </li>
+                </div>
+              </Link>
             ))}
-          </ul>
+          </div>
         </nav>
-
         <button
           aria-controls="mobile-menu"
           aria-expanded={isMenuOpen}
@@ -154,12 +114,10 @@ const Navbar = () => {
           {isMenuOpen ? <HiXMark /> : <HiBars3 />}
         </button>
       </header>
-
       <div
         className={`mobile-menu-backdrop ${isMenuOpen ? "is-open" : ""}`}
         onClick={closeMenu}
       />
-
       <aside
         aria-hidden={!isMenuOpen}
         className={`mobile-menu ${isMenuOpen ? "is-open" : ""}`}
@@ -170,7 +128,7 @@ const Navbar = () => {
             <div className="mobile-menu__brand-mark">{"</>"}</div>
 
             <div className="mobile-menu__brand-copy">
-              <span className="mobile-menu__brand-name">HEMAN@TH</span>
+              <span className="mobile-menu__brand-name">HEM@NTH</span>
               <span className="mobile-menu__brand-role">MY PORTFOLIO</span>
             </div>
           </div>
@@ -187,11 +145,11 @@ const Navbar = () => {
 
         <nav aria-label="Mobile navigation" className="mobile-menu__nav">
           {navItems.map(({ label, href, Icon, hint }) => (
-            <a
+            <Link
+              to={href}
               className={`mobile-menu__nav-item ${
                 activeHref === href ? "is-active" : ""
               }`}
-              href={href}
               key={label}
               onClick={() => handleNavClick(href)}
             >
@@ -203,21 +161,23 @@ const Navbar = () => {
                 <span className="mobile-menu__nav-title">{label}</span>
                 <span className="mobile-menu__nav-hint">{hint}</span>
               </span>
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a className="mobile-menu__cta" href="#contact" onClick={closeMenu}>
+        <Link className="mobile-menu__cta" to="/contact" onClick={closeMenu}>
           Get In Touch
-        </a>
+        </Link>
 
         <div className="mobile-menu__meta">
           <div className="mobile-menu__meta-item">
             <span className="mobile-menu__meta-icon">
               <HiOutlinePhone />
             </span>
+
             <span className="mobile-menu__meta-copy">
               <span className="mobile-menu__meta-label">Availability</span>
+
               <span className="mobile-menu__meta-value">
                 Open for freelance and full-time roles
               </span>
@@ -228,8 +188,10 @@ const Navbar = () => {
             <span className="mobile-menu__meta-icon">
               <HiOutlineMapPin />
             </span>
+
             <span className="mobile-menu__meta-copy">
               <span className="mobile-menu__meta-label">Location</span>
+
               <span className="mobile-menu__meta-value">India</span>
             </span>
           </div>

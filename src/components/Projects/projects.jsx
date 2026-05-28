@@ -22,6 +22,7 @@ const projectsData = [
     status: "Active Project",
     link: "https://hellodude-frontend.onrender.com/signuppage",
     type: "PersonalProject",
+    viewCode: "https://github.com/Hemanthtejavath/Hello-Dude-app",
   },
   {
     number: "02",
@@ -41,6 +42,7 @@ const projectsData = [
     status: "Active Project",
     link: "#",
     type: "PersonalProject",
+    viewCode: "#",
   },
   {
     number: "03",
@@ -53,6 +55,7 @@ const projectsData = [
     status: "Active Project",
     link: "https://hemanthtejavath.github.io/Nxtwave-website-clone/",
     type: "internshipProject",
+    viewCode: "https://github.com/Hemanthtejavath/Nxtwave-website-clone",
   },
   {
     number: "04",
@@ -61,10 +64,44 @@ const projectsData = [
     description:
       "FindIt is a website designed to facilitate the faster recovery of lost items by connecting finders with owners through a user-friendly interface and real-time notifications.",
     image: "./Findit.png",
-    technologies: ["HTML", "CSS", "Bootstrap", "Responsive Design"],
-    status: "InProgress...",
-    link: "#",
+    technologies: [
+      "React.js",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "Cloudinary",
+      "Git",
+      "GitHub",
+      "Render",
+      "Responsive Web Design",
+    ],
+    status: "Active Project",
+    link: "https://findit-1-74wq.onrender.com/register",
     type: "PersonalProject",
+    viewCode: "https://github.com/Hemanthtejavath/Findit",
+  },
+  {
+    number: "05",
+    title: "Image Search Engine",
+    subtitle: "Dynamic image search application using external API integration",
+    description:
+      "Image Search Engine is a responsive web application that allows users to search and explore images in real-time using an external image API. The application dynamically fetches and displays images with an interactive and user-friendly interface.",
+    image: "./ImageSearchEngine.png",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "REST API",
+      "Git",
+      "GitHub",
+      "Responsive Web Design",
+    ],
+    status: "Active Project",
+    link: "https://hemanthtejavath.github.io/Image_Engine/",
+    type: "PersonalProject",
+    viewCode: "https://github.com/Hemanthtejavath/Image_Engine",
   },
 ];
 
@@ -172,11 +209,12 @@ const Projects = () => {
                       <FaLink />
                     </a>
                   )}
-                  {project.link !== "#" && (
+                  {project.viewCode !== "#" && (
                     <a
-                      href="#"
+                      href={project.viewCode}
                       className="project-card__icon-btn project-card__icon-btn--code"
                       title="View Code"
+                      target="blank"
                     >
                       <FaGithub />
                     </a>
