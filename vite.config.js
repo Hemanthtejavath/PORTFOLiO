@@ -6,9 +6,16 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     middlewareMode: false,
-    historyApiFallback: true,
-  },
-  preview: {
-    historyApiFallback: true,
+    middlewares: [
+      // Fallback middleware for SPA routing
+      (req, res, next) => {
+        const url = req.url;
+        // If request doesn't have a file extension, treat it as a route
+        if (!url.includes(".") && url !== "/") {
+          req.url = "/";
+        }
+        next();
+      },
+    ],
   },
 });
