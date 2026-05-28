@@ -13,7 +13,7 @@ import {
 } from "react-icons/hi2";
 
 import { RiRocketLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./navbar.css";
 
@@ -58,7 +58,8 @@ const navItems = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState("/");
+  const location = useLocation();
+  const activeHref = location.pathname;
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -70,8 +71,7 @@ const Navbar = () => {
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleNavClick = (href) => {
-    setActiveHref(href);
+  const handleNavClick = () => {
     closeMenu();
   };
 
@@ -93,7 +93,7 @@ const Navbar = () => {
                 to={href}
                 className={activeHref === href ? "is-active" : ""}
                 key={label}
-                onClick={() => handleNavClick(href)}
+                onClick={handleNavClick}
               >
                 <div className="navItem">
                   <Icon />
@@ -151,7 +151,7 @@ const Navbar = () => {
                 activeHref === href ? "is-active" : ""
               }`}
               key={label}
-              onClick={() => handleNavClick(href)}
+              onClick={handleNavClick}
             >
               <span className="mobile-menu__nav-icon">
                 <Icon />
