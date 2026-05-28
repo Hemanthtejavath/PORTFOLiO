@@ -17,7 +17,7 @@ const Footer = () => {
           {/* Left Section - About */}
           <div className="footer__section footer__about">
             <div className="footer__brand">
-              <h3>HEMAN@TH</h3>
+              <h3>HEM@NTH</h3>
               <p>Full Stack Developer</p>
             </div>
             <p className="footer__description">
